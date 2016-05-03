@@ -25,9 +25,8 @@ public class graphicsPanel extends JPanel {
 	boolean complete = false;
 	
 	//we will create three array lists one for each line type
-	ArrayList<ParametricLine> parametricList = new ArrayList<ParametricLine>();
+	//TESTED: this line draws correctly
 	ArrayList<BresLine> bresenhamList = new ArrayList<BresLine>();
-	ArrayList<APILine> apiList = new ArrayList<APILine>();
 	public graphicsPanel(frame f) {
 		this.frame = f;
 		this.addMouseListener(new MouseListener(){
@@ -38,12 +37,16 @@ public class graphicsPanel extends JPanel {
 					int x = e.getX();
 					int y = e.getY();
 				if (e.getButton() == MouseEvent.BUTTON1) {
+		
+				
 						if (count == 0){
 							x1 = x;
 							y1 = y;
 							count++;
 						}
 						else if (count == 1){
+//							bresenhamList.add(new BresLine(x1,y1,x,y));
+//							count = 0;
 							x2 = x;
 							y2 = y;
 							count++;
@@ -79,31 +82,6 @@ public class graphicsPanel extends JPanel {
 		});
 	}
 	
-	public void hub(int x1, int y1, int x2, int y2){
-		switch (mode){
-		case -1: 
-			break;
-		
-		//Parametric
-		case 0:
-			ParametricLine pline = new ParametricLine (x1,y1,x2,y2,frame.getSteps());
-			parametricList.add(pline);
-			break;
-			
-		//Brasenham's
-		case 1:
-			BresLine bLine = new BresLine (x1,y1,x2,y2);
-			bresenhamList.add(bLine);
-			break;
-			
-		//API
-		case 2:
-			APILine aline = new APILine(x1,y1,x2,y2);
-			apiList.add(aline);
-			break;
-		}
-	}
-	
 	public void makeTriangle (int x1In, int y1In, int x2In, int y2In, int x3In, int y3In){
 		t = new Triangle(x1In, y1In, x2In, y2In, x3In, y3In, frameBuff);
 		complete = true;
@@ -121,6 +99,10 @@ public class graphicsPanel extends JPanel {
 		Graphics2D g2d = (Graphics2D)g;
 		if (complete){
 			t.render(g2d);}
+		
+//		for (BresLine l:bresenhamList){
+//			l.render(frameBuff, g2d);
+//		}
 	}
 
 	//clears each array list

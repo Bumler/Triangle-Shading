@@ -16,7 +16,7 @@ public class Triangle {
 		x1 = x1In;
 		x2 = x2In;
 		x3 = x3In;
-		y1 = y2In;
+		y1 = y1In;
 		y2 = y2In;
 		y3 = y3In;
 		

@@ -60,53 +60,6 @@ public class frame extends JFrame {
 		JPanel btnPanel = new JPanel();
 		contentPane.add(btnPanel, BorderLayout.EAST);
 		btnPanel.setLayout(new GridLayout(10, 10, 0, 0));
-	
-		JLabel lblMode = new JLabel("Step Size");
-		btnPanel.add(lblMode);
-		
-		textField = new JTextField(".01");
-		btnPanel.add(textField);
-		textField.setColumns(10);
-		textField.addActionListener(new ActionListener(){
-			public void actionPerformed (ActionEvent arg0){
-				steps = Double.parseDouble(textField.getText());
-		}
-		});
-		
-		JLabel label = new JLabel("Press enter to input new steps");
-		label.setFont(new Font("Serif", Font.PLAIN, 10));
-		btnPanel.add(label);
-		
-		//creates a group of radio buttons for the three line types
-		ButtonGroup group = new ButtonGroup();
-
-		JRadioButton parametricBTN = new JRadioButton("Parametric");
-		btnPanel.add(parametricBTN);
-		group.add(parametricBTN);
-		parametricBTN.addActionListener(new ActionListener(){
-			public void actionPerformed (ActionEvent arg0){
-				mode = 0;
-				panel_1.setMode(mode);
-			}
-		});
-		JRadioButton bresenhamBTN = new JRadioButton("Bresenham");
-		btnPanel.add(bresenhamBTN);
-		group.add(bresenhamBTN);
-		bresenhamBTN.addActionListener(new ActionListener(){
-			public void actionPerformed (ActionEvent arg0){
-				mode = 1;
-				panel_1.setMode(mode);
-			}
-		});
-		JRadioButton apiBTN = new JRadioButton("API");
-		btnPanel.add(apiBTN);
-		group.add(apiBTN);
-		apiBTN.addActionListener(new ActionListener(){
-			public void actionPerformed (ActionEvent arg0){
-				mode = 2;
-				panel_1.setMode(mode);
-			}
-		});
 		
 		JButton btnDot = new JButton("Erase");
 		btnDot.addActionListener(new ActionListener() {

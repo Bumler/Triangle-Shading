@@ -14,6 +14,11 @@ public class BresLine {
 	int deltaY;
 	int Pk;
 	
+	int color1 = 255;
+	int color2 = 255;
+	
+	int color = 255;
+	
 	boolean yAlg = false;
 	boolean xAlg = false;
 	
@@ -226,7 +231,17 @@ public class BresLine {
 			for(int i = 0; i < frameBuff.length; i++){
 				for (int j = 0; j < frameBuff[i].length; j++){
 					if (frameBuff[i][j] == 1){
-						g2d.setColor((Color.WHITE));
+						//g2d.setColor((Color.WHITE));
+						if(xAlg){
+							float a = (float)(x1-x1)/(x2-x1);
+							color = (int) (((1-a) * color1) + (a * color2));
+						}
+						else{
+							float a = (float)(y-y1)/(y2-y1);
+							color = (int) (((1-a) * color1) + (a * color2));
+						}
+						
+						g2d.setColor(new Color(color,color,color));
 						g2d.fillRect(j, i, 1, 1);
 					}
 					else {
