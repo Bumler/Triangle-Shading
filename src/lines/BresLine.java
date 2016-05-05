@@ -43,6 +43,10 @@ public class BresLine {
 					this.y1 = y2;
 					this.x2 = x1;
 					this.y2 = y1;
+					
+					int tempColor = color2;
+					color2 = color1;
+					color1 = tempColor;
 				}
 			}
 			else if (deltaY < deltaX){
@@ -52,6 +56,10 @@ public class BresLine {
 					this.y1 = y2;
 					this.x2 = x1;
 					this.y2 = y1;
+					
+					int tempColor = color2;
+					color2 = color1;
+					color1 = tempColor;
 				}
 			}
 			
@@ -258,7 +266,7 @@ public class BresLine {
 								color = 1;}
 						}
 						System.out.println(color);
-						//frameBuff[i][j] = color;
+						frameBuff[i][j] = color;
 						g2d.setColor(new Color(color,color,color));
 						g2d.fillRect(j, i, 1, 1);
 					}

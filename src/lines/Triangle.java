@@ -26,32 +26,33 @@ public class Triangle {
 		
 		frameBuff = frameBuffIn;
 		
-		line1 = new BresLine(x1,y1,x2,y2,0,128);
+		line1 = new BresLine(x1,y1,x2,y2,1,128);
 		line2 = new BresLine(x2,y2,x3,y3,128,255);
-		line3 = new BresLine(x3,y3,x1,y1,255,0);
+		line3 = new BresLine(x3,y3,x1,y1,255,1);
 	}
 	
-//	public void shade(){
-//		for (int i = 0; i < frameBuff.length; i++){
-//			for (int j = 0; j < frameBuff.length; j++){
-//				if(frameBuff[i][j]!= 0){
-//					for (int n = frameBuff.length; n > 0; n--){
-//						if(frameBuff[i][n]!= 0){
-//							shadeLines.add(new BresLine(i,j,i,n,frameBuff[i][j],frameBuff[i][n]));
-//						}
-//					}
-//				}
-//			}
-//		}
-//	}
+	public void shade(){
+		for (int i = 0; i < frameBuff.length; i++){
+			for (int j = 0; j < frameBuff[i].length; j++){
+				System.out.println("check");
+				if(frameBuff[i][j]!= 0){
+					for (int n = frameBuff.length; n > 0; n--){
+						if(frameBuff[i][n]!= 0){
+							shadeLines.add(new BresLine(j,i,n,i,frameBuff[i][j],frameBuff[i][n]));
+						}
+					}
+				}
+			}
+		}
+	}
 	
 	public void render(Graphics2D g2d){
 		line1.render(frameBuff, g2d);
 		line2.render(frameBuff, g2d);
 		line3.render(frameBuff, g2d);
-//		shade();
-//		for (BresLine l:shadeLines){
-//			l.render(frameBuff, g2d);
-//		}
+		//shade();
+		for (BresLine l:shadeLines){
+			l.render(frameBuff, g2d);
+		}
 	}
 }
