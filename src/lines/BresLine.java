@@ -76,6 +76,13 @@ public class BresLine {
 			deltaY *= 2;
 	}
 	
+	public BresLine (int x1, int y1, int x2, int y2, int c1, int c2){
+		this (x1,y1,x2,y2);
+		color1 = c1;
+		color2 = c2;
+		color = color1;
+	}
+	
 	//https://www.youtube.com/watch?v=TRbwu17oAYY
 	//helped explaining the algorithm
 	public void render (Graphics2D g2d){
@@ -147,7 +154,7 @@ public class BresLine {
 					}	
 			}
 	}
-	
+
 	//https://www.youtube.com/watch?v=TRbwu17oAYY
 	//helped explaining the algorithm
 	public void render (int[][] frameBuff, Graphics2D g2d){
@@ -231,23 +238,34 @@ public class BresLine {
 			for(int i = 0; i < frameBuff.length; i++){
 				for (int j = 0; j < frameBuff[i].length; j++){
 					if (frameBuff[i][j] == 1){
-						//g2d.setColor((Color.WHITE));
+
 						if(xAlg){
-							float a = (float)(x1-x1)/(x2-x1);
+							System.out.println("x");
+							float a = (float)(j-x1)/(x2-x1);
 							color = (int) (((1-a) * color1) + (a * color2));
+							if (color > 255){
+								color = 255;}
+							if (color <  1){
+								color = 1;}
 						}
 						else{
-							float a = (float)(y-y1)/(y2-y1);
+							System.out.println("y");
+							float a = (float)(i-y1)/(y2-y1);
 							color = (int) (((1-a) * color1) + (a * color2));
+							if (color > 255){
+								color = 255;}
+							if (color <  1){
+								color = 1;}
 						}
-						
+						System.out.println(color);
+						//frameBuff[i][j] = color;
 						g2d.setColor(new Color(color,color,color));
 						g2d.fillRect(j, i, 1, 1);
 					}
-					else {
-						g2d.setColor(Color.BLACK);
-						g2d.fillRect(j, i, 20, 20);
-					}
+//					else {
+//						g2d.setColor(Color.PINK);
+//						g2d.fillRect(j, i, 1, 1);
+//					}
 				}
 			}
 	}

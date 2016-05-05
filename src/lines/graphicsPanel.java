@@ -100,6 +100,18 @@ public class graphicsPanel extends JPanel {
 		if (complete){
 			t.render(g2d);}
 		
+//		for (int i = 0; i < frameBuff.length; i++){
+//			for (int j = 0; j < frameBuff.length; j++){
+//				if(frameBuff[i][j]!= 0){
+//					g2d.setColor(new Color (frameBuff[i][j],frameBuff[i][j],frameBuff[i][j]));
+//					g2d.fillRect(j, i, 1, 1);
+//				}
+//				else{
+//					g2d.setColor(Color.PINK);
+//					g2d.fillRect(j, i, 1, 1);
+//				}
+//			}
+//		}
 //		for (BresLine l:bresenhamList){
 //			l.render(frameBuff, g2d);
 //		}
