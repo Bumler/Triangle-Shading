@@ -50,7 +50,7 @@ public class Triangle {
 		line1.render(frameBuff, g2d);
 		line2.render(frameBuff, g2d);
 		line3.render(frameBuff, g2d);
-		//shade();
+		shade();
 		for (BresLine l:shadeLines){
 			l.render(frameBuff, g2d);
 		}

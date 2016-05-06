@@ -24,6 +24,7 @@ public class BresLine {
 	
 	boolean bigYfirst = false;
 	boolean bigXfirst = false;
+	boolean reverse = false;
 	
 	public BresLine (int x1, int y1, int x2, int y2){
 		//makes sure that x1 is less than x2
@@ -47,6 +48,7 @@ public class BresLine {
 					int tempColor = color2;
 					color2 = color1;
 					color1 = tempColor;
+					color = color2;
 				}
 			}
 			else if (deltaY < deltaX){
@@ -60,6 +62,7 @@ public class BresLine {
 					int tempColor = color2;
 					color2 = color1;
 					color1 = tempColor;
+					color = color2;
 				}
 			}
 			
@@ -177,16 +180,18 @@ public class BresLine {
 			//after that we have a few more if statements to cover every other possible algorithm
 			if (bigYfirst){
 				if (xAlg){
+					reverse = true;
 					while (x < x2) {
 						if (Pk < 0) {
+							//reverse = true;
 							x++;
-							//g2d.drawOval(x, y, 1, 1);
 							frameBuff[y][x] = 1;
 							Pk = Pk + deltaY;
 						} else {
+							//reverse = true;
 							x++;
 							y--;
-							//g2d.drawOval(x, y, 1, 1);
+							
 							frameBuff[y][x] = 1;
 							Pk = Pk + deltaY - deltaX;
 						}
@@ -198,45 +203,47 @@ public class BresLine {
 				while (x < x2) {
 					if (Pk < 0) {
 						x++;
-						//g2d.drawOval(x, y, 1, 1);
+						
 						frameBuff[y][x] = 1;
 						Pk = Pk + deltaY;
 					} else {
 						x++;
 						y++;
-						//g2d.drawOval(x, y, 1, 1);
+						
 						frameBuff[y][x] = 1;
 						Pk = Pk + deltaY - deltaX;
 					}
 				}	
 				}
 				else if (bigXfirst){
+					reverse = true;
 					while (y < y2) {
 						if (Pk < 0) {
 							y++;
-							//g2d.drawOval(x, y, 1, 1);
+							
 							frameBuff[y][x] = 1;
 							Pk = Pk + deltaX;
 						} else {
 							x--;
 							y++;
-							//g2d.drawOval(x, y, 1, 1);
+							
 							frameBuff[y][x] = 1;
 							Pk = Pk + deltaX - deltaY;
 						}
 					}	
 				}
 				else
+					reverse = true;
 					while (y < y2) {
 						if (Pk < 0) {
 							y++;
-							//g2d.drawOval(x, y, 1, 1);
+							
 							frameBuff[y][x] = 1;
 							Pk = Pk + deltaX;
 						} else {
 							x++;
 							y++;
-							//g2d.drawOval(x, y, 1, 1);
+							
 							frameBuff[y][x] = 1;
 							Pk = Pk + deltaX - deltaY;
 						}
@@ -250,20 +257,30 @@ public class BresLine {
 						if(xAlg){
 							System.out.println("x");
 							float a = (float)(j-x1)/(x2-x1);
-							color = (int) (((1-a) * color1) + (a * color2));
+							
+							if(!reverse){
+								color = (int) (((a) * color1) + ((1-a) * color2));}
+							else if(reverse){
+								color = (int) (((1-a) * color1) + ((a) * color2));}
+							
 							if (color > 255){
-								color = 255;}
+								color -= 255;}
 							if (color <  1){
-								color = 1;}
+								color += 255;}
 						}
 						else{
 							System.out.println("y");
 							float a = (float)(i-y1)/(y2-y1);
-							color = (int) (((1-a) * color1) + (a * color2));
+							
+							if(!reverse){
+								color = (int) (((a) * color1) + ((1-a) * color2));}
+							else if(reverse){
+								color = (int) (((1-a) * color1) + ((a) * color2));}
+							
 							if (color > 255){
-								color = 255;}
+								color -= 255;}
 							if (color <  1){
-								color = 1;}
+								color += 255;}
 						}
 						System.out.println(color);
 						frameBuff[i][j] = color;
